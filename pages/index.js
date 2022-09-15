@@ -6,15 +6,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function Home() {
   const [image, setImage] = useState(0);
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [16, -20]);
+  const scale = useTransform(scrollYProgress, [0, 1], [16, 2]);
   useEffect(
     () =>
       scale.onChange((v) => {
         let path = Math.floor(v);
-        if (path >= 0) {
-          setImage(path);
-          console.log(path);
-        }
+        setImage(path);
       }),
     [scale, image]
   );
@@ -79,7 +76,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      <div className={styles.scroll}></div>
+      {/* <div className={styles.scroll}></div> */}
     </Container>
   );
 }
