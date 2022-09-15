@@ -6,12 +6,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function Home() {
   const [image, setImage] = useState(0);
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [16, 2]);
+  const scale = useTransform(scrollYProgress, [0, 1], [16, -20]);
   useEffect(
     () =>
       scale.onChange((v) => {
         let path = Math.floor(v);
-        setImage(path);
+        if (path >= 0) {
+          setImage(path);
+          console.log(path);
+        }
       }),
     [scale, image]
   );
@@ -42,6 +45,7 @@ export default function Home() {
             <Image
               priority={true}
               layout="fill"
+              objectFit="contain"
               src={`/images/sprites/BLUE_REC/blue_rectangle${image}.webp`}
               alt="BLUE_REC"
             />
@@ -50,6 +54,7 @@ export default function Home() {
             <Image
               priority={true}
               layout="fill"
+              objectFit="contain"
               src={`/images/sprites/DONUT/donout${image}.webp`}
               alt="DONUT"
             />
@@ -58,6 +63,7 @@ export default function Home() {
             <Image
               priority={true}
               layout="fill"
+              objectFit="contain"
               src={`/images/sprites/RED_BLOCKS/red_blocks${image}.webp`}
               alt="RED_BLOCKS"
             />
@@ -66,6 +72,7 @@ export default function Home() {
             <Image
               priority={true}
               layout="fill"
+              objectFit="cover"
               src={`/images/sprites/YELLOW_REC/yellow_rectangle${image}.webp`}
               alt="YELLOW_REC"
             />
