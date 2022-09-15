@@ -32,7 +32,7 @@
   width: 60px;
   aspect-ratio: 1/1;
   position: absolute;
-  perspective: 1200px;
+  animation: bouncy 900ms ease-in-out infinite alternate;
 }
 .one {
   top: 30%;
@@ -83,7 +83,9 @@
     width: 100%;
   }
 }
-
+.scroll {
+  height: 700px;
+}
 @keyframes bouncy {
   0% {
     transform: translateY(-10px);

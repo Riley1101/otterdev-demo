@@ -4,9 +4,18 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 export default function Home() {
+  const [image, setImage] = useState(0);
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [180, 2]);
-  useEffect(() => scale.onChange((v) => {}), [scale]);
+  const scale = useTransform(scrollYProgress, [0, 1], [16, 2]);
+  useEffect(
+    () =>
+      scale.onChange((v) => {
+        let path = Math.floor(v);
+        setImage(path);
+      }),
+    [scale, image]
+  );
+
   return (
     <Container>
       <section className={styles.container}>
@@ -29,48 +38,41 @@ export default function Home() {
             muted
             src="/images/hero__illustration.webm"
           ></video>
-          <motion.div
-            className={`${styles.blob} ${styles.one}`}
-            style={{ rotateY: scale }}
-          >
+          <motion.div className={`${styles.blob} ${styles.one}`}>
             <Image
+              priority={true}
               layout="fill"
-              src="/images/sprites/blue_rectangle0000.webp"
-              alt="Sprite"
+              src={`/images/sprites/BLUE_REC/blue_rectangle${image}.webp`}
+              alt="BLUE_REC"
             />
           </motion.div>
-          <motion.div
-            className={`${styles.blob} ${styles.two}`}
-            style={{ rotateY: scale }}
-          >
+          <motion.div className={`${styles.blob} ${styles.two}`}>
             <Image
+              priority={true}
               layout="fill"
-              src="/images/sprites/donout0000.webp"
-              alt="Sprite"
+              src={`/images/sprites/DONUT/donout${image}.webp`}
+              alt="DONUT"
             />
           </motion.div>
-          <motion.div
-            className={`${styles.blob} ${styles.three}`}
-            style={{ rotateY: scale }}
-          >
+          <motion.div className={`${styles.blob} ${styles.three}`}>
             <Image
+              priority={true}
               layout="fill"
-              src="/images/sprites/red_blocks0002.webp"
-              alt="Sprite"
+              src={`/images/sprites/RED_BLOCKS/red_blocks${image}.webp`}
+              alt="RED_BLOCKS"
             />
           </motion.div>
-          <motion.div
-            className={`${styles.blob} ${styles.four}`}
-            style={{ rotateY: scale }}
-          >
+          <motion.div className={`${styles.blob} ${styles.four}`}>
             <Image
+              priority={true}
               layout="fill"
-              src="/images/sprites/yellow_rectangle0000.webp"
-              alt="Sprite"
+              src={`/images/sprites/YELLOW_REC/yellow_rectangle${image}.webp`}
+              alt="YELLOW_REC"
             />
           </motion.div>
         </div>
       </section>
+      <div className={styles.scroll}></div>
     </Container>
   );
 }
