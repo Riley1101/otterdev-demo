@@ -1,0 +1,103 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.5em;
+  padding-inline: 1.5em;
+  z-index: 11;
+  transition: all 50ms ease-in-out;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.active {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: bounce-top 250ms both;
+}
+.header__logo {
+  position: relative;
+  width: 180px;
+  height: 60px;
+}
+.navigation__list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  gap: 1em;
+  align-items: center;
+
+  display: none;
+  pointer-events: none;
+}
+.navigation__list__item {
+  cursor: pointer;
+  font-size: var(--clr-text-sm);
+  font-weight: bold;
+  color: var(--clr-theme-black);
+}
+
+.navigation__list__item:hover {
+  color: var(--clr-theme-primary);
+}
+.navigation__list__item__btn {
+  border-radius: var(--radius);
+  background-color: var(--clr-theme-primary);
+  font-size: var(--clr-text-sm);
+  color: var(--clr-theme-white);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding-inline: 2em;
+  padding-block: 0.6em;
+}
+.navigation__list__item__btn:hover {
+  background-color: var(--clr-theme-black);
+}
+.mobile__menu {
+  all: unset;
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .header {
+    padding-block-start: 0.5em;
+    padding-block-end: 0em;
+    padding-inline: 3em;
+  }
+
+  .mobile__menu {
+    display: none;
+    pointer-events: none;
+  }
+  .header__logo {
+    position: relative;
+    width: 200px;
+    height: 45px;
+  }
+  .navigation__list {
+    display: flex;
+    pointer-events: all;
+    gap: 2em;
+  }
+  .navigation__list__item__btn {
+    padding-inline: 1em;
+    padding-block: 0.5em;
+  }
+}
+
+@keyframes bounce-top {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
